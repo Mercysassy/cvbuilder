@@ -47,6 +47,14 @@ const CVPreview = React.forwardRef(({ cvData }, ref) => {
             <div className="cv-page" ref={ref}>
                 <Header personal={cvData.personal} />
 
+                {cvData.personal.summary && (
+                    <Section title="Personal Summary">
+                        <div className="entry-description">
+                            {cvData.personal.summary}
+                        </div>
+                    </Section>
+                )}
+
                 <Section title="Experience">
                     {cvData.experience.map(exp => (
                         <WorkEntry key={exp.id} entry={exp} />

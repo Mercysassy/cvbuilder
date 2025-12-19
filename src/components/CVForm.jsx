@@ -4,6 +4,19 @@ const CVForm = ({ cvData, onChange, onAddExperience, onRemoveExperience, onAddEd
     return (
         <div className="cv-form">
             <div className="form-section">
+                <h2>Personal Summary</h2>
+                <div className="input-group">
+                    <label>Summary Statement</label>
+                    <textarea
+                        value={cvData.personal.summary}
+                        onChange={(e) => onChange('personal', 'summary', e.target.value)}
+                        placeholder="Brief summary of your professional background and goals..."
+                        style={{ minHeight: '100px' }}
+                    />
+                </div>
+            </div>
+
+            <div className="form-section">
                 <h2>Personal Details</h2>
                 <div className="input-group">
                     <label>Full Name</label>

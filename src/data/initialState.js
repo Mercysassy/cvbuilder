@@ -5,7 +5,8 @@ export const initialCVData = {
         email: "jane.doe@example.com",
         phone: "+1 555-CV-BUILD",
         linkedin: "linkedin.com/in/janedoe",
-        location: "San Francisco, CA"
+        location: "San Francisco, CA",
+        summary: "Passionate React Developer with 5 years of experience building responsive web applications. Expert in modern JavaScript frameworks and UI/UX best practices."
     },
     experience: [
         {
