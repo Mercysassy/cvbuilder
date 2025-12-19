@@ -175,11 +175,13 @@ button {
   /* Padding handled by the page inside */
   border-radius: 8px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  overflow: auto;
+  max-width: 100%;
 }
 
 .cv-page {
   width: 210mm;
+  min-width: 210mm;
   min-height: 297mm;
   padding: 20mm;
   margin: 0 auto;
@@ -287,7 +289,6 @@ button {
   .cv-preview-container {
     box-shadow: none;
     border-radius: 0;
-    overflow: auto;
   }
 
   .cv-page {
@@ -295,7 +296,5 @@ button {
     height: 100%;
     padding: 0;
     margin: 0;
-    max-width: 210mm;
-    min-height: 297mm;
   }
 }
