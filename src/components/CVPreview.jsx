@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 const Header = ({ personal }) => (
     <div className="preview-header">
@@ -41,7 +41,7 @@ const EducationEntry = ({ entry }) => (
     </div>
 );
 
-const CVPreview = React.forwardRef(({ cvData }, ref) => {
+const CVPreview = forwardRef(({ cvData }, ref) => {
     return (
         <div className="cv-preview-container">
             <div className="cv-page" ref={ref}>
