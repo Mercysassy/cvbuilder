@@ -24,7 +24,7 @@ body {
 .app-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
