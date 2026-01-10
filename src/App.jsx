@@ -3,15 +3,27 @@ import { useReactToPrint } from 'react-to-print';
 import CVForm from './components/CVForm';
 import CVPreview from './components/CVPreview';
 import { initialCVData } from './data/initialState';
+import ThemeEditor from './components/ThemeEditor';
 import './index.css';
 
 function App() {
     const [cvData, setCvData] = useState(initialCVData);
+    const [theme, setTheme] = useState({
+        template: 'minimalist',
+        accentColor: '#000000',
+        backgroundColor: '#ffffff'
+    });
     const componentRef = useRef();
 
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
-        documentTitle: `${cvData.personal.fullName.replace(' ', '_')}_CV`,
+        documentTitle: `${cvData.personal.firstName}_${cvData.personal.lastName}_CV`,
+        pageStyle: `
+            @page {
+                size: auto;
+                margin: 0.5in;
+            }
+        `
     });
 
     const handleChange = (section, field, value, index = null) => {
@@ -89,6 +101,52 @@ function App() {
         }));
     };
 
+    const addCertification = () => {
+        setCvData(prev => ({
+            ...prev,
+            certifications: [
+                ...prev.certifications || [],
+                {
+                    id: Date.now(),
+                    name: 'Certification Name',
+                    issuer: 'Issuer',
+                    year: '2023'
+                }
+            ]
+        }));
+    };
+
+    const removeCertification = (id) => {
+        setCvData(prev => ({
+            ...prev,
+            certifications: (prev.certifications || []).filter(item => item.id !== id)
+        }));
+    };
+
+    const addVolunteer = () => {
+        setCvData(prev => ({
+            ...prev,
+            volunteer: [
+                ...prev.volunteer || [],
+                {
+                    id: Date.now(),
+                    role: 'Volunteer Role',
+                    organization: 'Organization',
+                    startDate: '2022',
+                    endDate: 'Present',
+                    description: 'Description of activity...'
+                }
+            ]
+        }));
+    };
+
+    const removeVolunteer = (id) => {
+        setCvData(prev => ({
+            ...prev,
+            volunteer: (prev.volunteer || []).filter(item => item.id !== id)
+        }));
+    };
+
     return (
         <div className="app-container">
             <header className="header">
@@ -99,17 +157,21 @@ function App() {
             </header>
 
             <main className="main-content">
-                <CVForm
-                    cvData={cvData}
-                    onChange={handleChange}
-                    onAddExperience={addExperience}
-                    onRemoveExperience={removeExperience}
-                    onAddEducation={addEducation}
-                    onRemoveEducation={removeEducation}
-                />
+                <div className="left-column">
+                    <ThemeEditor theme={theme} setTheme={setTheme} />
+                    <CVForm
+                        cvData={cvData}
+                        onChange={handleChange}
+                        onAddExperience={addExperience}
+                        onRemoveExperience={removeExperience}
+                        onAddEducation={addEducation}
+                        onRemoveEducation={removeEducation}
+                    />
+                </div>
                 <CVPreview
                     ref={componentRef}
                     cvData={cvData}
+                    theme={theme}
                 />
             </main>
         </div>

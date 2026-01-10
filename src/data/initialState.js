@@ -1,10 +1,16 @@
 export const initialCVData = {
     personal: {
-        fullName: "Jane Doe",
+        firstName: "Jane",
+        lastName: "Doe",
         title: "React Developer",
         email: "jane.doe@example.com",
         phone: "+1 555-CV-BUILD",
         linkedin: "linkedin.com/in/janedoe",
+        portfolio: "janedoe.dev",
+        age: "28",
+        nationality: "American",
+        address: "123 Tech Lane",
+        stateOfOrigin: "California",
         location: "San Francisco, CA",
         summary: "Passionate React Developer with 5 years of experience building responsive web applications. Expert in modern JavaScript frameworks and UI/UX best practices."
     },
@@ -32,6 +38,24 @@ export const initialCVData = {
             degree: "B.S. Computer Science",
             institution: "State University",
             year: "2018-2022"
+        }
+    ],
+    certifications: [
+        {
+            id: 1,
+            name: "AWS Certified Developer",
+            issuer: "Amazon Web Services",
+            year: "2022"
+        }
+    ],
+    volunteer: [
+        {
+            id: 1,
+            role: "Mentor",
+            organization: "Code for Good",
+            startDate: "2020",
+            endDate: "Present",
+            description: "Mentoring aspiring developers in web technologies."
         }
     ],
     skills: "React, JavaScript, HTML, CSS, Git, Node.js, TypeScript, Tailwind CSS"

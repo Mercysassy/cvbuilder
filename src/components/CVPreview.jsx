@@ -1,77 +1,43 @@
 import { forwardRef } from 'react';
+import MinimalistLayout from './layouts/MinimalistLayout';
+import ProfessionalLayout from './layouts/ProfessionalLayout';
+import ModernLayout from './layouts/ModernLayout';
+import BoldLayout from './layouts/BoldLayout';
+import CreativeLayout from './layouts/CreativeLayout';
 
-const Header = ({ personal }) => (
-    <div className="preview-header">
-        <h1>{personal.fullName}</h1>
-        <h2>{personal.title}</h2>
-        <div className="contact-info">
-            {personal.email && <span>{personal.email}</span>}
-            {personal.phone && <span>{personal.phone}</span>}
-            {personal.location && <span>{personal.location}</span>}
-            {personal.linkedin && <span>{personal.linkedin}</span>}
-        </div>
-    </div>
-);
+// Remove old local components since we now use shared/layouts
 
-const Section = ({ title, children }) => (
-    <div className="preview-section">
-        <h3>{title}</h3>
-        {children}
-    </div>
-);
+const CVPreview = forwardRef(({ cvData, theme }, ref) => {
+    // Determine which layout to render
+    const renderLayout = () => {
+        switch (theme.template) {
+            case 'professional':
+                return <ProfessionalLayout cvData={cvData} theme={theme} />;
+            case 'modern':
+                return <ModernLayout cvData={cvData} theme={theme} />;
+            case 'bold':
+                return <BoldLayout cvData={cvData} theme={theme} />;
+            case 'creative':
+                return <CreativeLayout cvData={cvData} theme={theme} />;
+            case 'minimalist':
+            default:
+                return <MinimalistLayout cvData={cvData} theme={theme} />;
+        }
+    };
 
-const WorkEntry = ({ entry }) => (
-    <div className="entry">
-        <div className="entry-header">
-            <div className="entry-title">{entry.jobTitle}</div>
-            <div className="entry-date">{entry.startDate} - {entry.endDate}</div>
-        </div>
-        <div className="entry-subtitle">{entry.company}</div>
-        <div className="entry-description">{entry.description}</div>
-    </div>
-);
-
-const EducationEntry = ({ entry }) => (
-    <div className="entry">
-        <div className="entry-header">
-            <div className="entry-title">{entry.degree}</div>
-            <div className="entry-date">{entry.year}</div>
-        </div>
-        <div className="entry-subtitle">{entry.institution}</div>
-    </div>
-);
-
-const CVPreview = forwardRef(({ cvData }, ref) => {
     return (
         <div className="cv-preview-container">
-            <div className="cv-page" ref={ref}>
-                <Header personal={cvData.personal} />
-
-                {cvData.personal.summary && (
-                    <Section title="Personal Summary">
-                        <div className="entry-description">
-                            {cvData.personal.summary}
-                        </div>
-                    </Section>
-                )}
-
-                <Section title="Experience">
-                    {cvData.experience.map(exp => (
-                        <WorkEntry key={exp.id} entry={exp} />
-                    ))}
-                </Section>
-
-                <Section title="Education">
-                    {cvData.education.map(edu => (
-                        <EducationEntry key={edu.id} entry={edu} />
-                    ))}
-                </Section>
-
-                <Section title="Skills">
-                    <div className="entry-description">
-                        {cvData.skills}
-                    </div>
-                </Section>
+            <div
+                className="cv-page"
+                ref={ref}
+                style={{
+                    backgroundColor: theme.backgroundColor,
+                    // We can also pass CSS vars if we want to rely on classes more
+                    '--cv-accent': theme.accentColor,
+                    '--cv-bg': theme.backgroundColor
+                }}
+            >
+                {renderLayout()}
             </div>
         </div>
     );

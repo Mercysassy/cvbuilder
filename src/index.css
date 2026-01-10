@@ -5,6 +5,11 @@
   --card-bg: #ffffff;
   --border-color: #e5e7eb;
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Dynamic Theme Variables - Defaults */
+  --cv-accent: #000000;
+  --cv-bg: #ffffff;
+  --cv-text: #1f2937;
 }
 
 * {
@@ -44,9 +49,26 @@ body {
 
 .main-content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
+  /* Give more space to preview */
   gap: 2rem;
   align-items: start;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  padding-right: 10px;
+  /* Space for scrollbar */
+}
+
+/* Move scroll from form to container */
+.cv-form {
+  max-height: none;
+  overflow-y: visible;
 }
 
 @media (max-width: 1024px) {
@@ -56,11 +78,20 @@ body {
 }
 
 /* Form Styles */
+.theme-editor,
 .cv-form {
   background: var(--card-bg);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.theme-editor {
+  margin-bottom: 0;
+  /* Let flex gap handle it */
+}
+
+.cv-form {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -180,13 +211,26 @@ button {
 }
 
 .cv-page {
+  --page-padding: 20mm;
   width: 210mm;
   min-width: 210mm;
   min-height: 297mm;
-  padding: 20mm;
+  padding: var(--page-padding);
   margin: 0 auto;
   background: white;
   color: #333;
+  overflow: hidden;
+  /* Ensure no overflow e.g. from negative margins */
+}
+
+@media (max-width: 850px) {
+  .cv-page {
+    --page-padding: 1.5rem;
+    /* Maintain fixed width to allow scrolling */
+    width: 210mm;
+    min-width: 210mm;
+    padding: var(--page-padding);
+  }
 }
 
 .preview-header {
@@ -262,6 +306,83 @@ button {
   font-size: 0.95rem;
   white-space: pre-line;
   line-height: 1.6;
+}
+
+/* Professional Layout */
+.professional-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  height: 100%;
+}
+
+.professional-sidebar {
+  padding: 2rem;
+  /* Use variable for negative margin to match padding */
+  margin: calc(-1 * var(--page-padding)) 0 calc(-1 * var(--page-padding)) calc(-1 * var(--page-padding));
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (max-width: 850px) {
+  .professional-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .professional-sidebar {
+    /* Reset margins for stacked layout or reduced padding */
+    margin: calc(-1 * var(--page-padding)) calc(-1 * var(--page-padding)) 2rem calc(-1 * var(--page-padding));
+    padding: 1.5rem;
+  }
+}
+
+/* Modern Layout */
+.modern-banner {
+  background: var(--cv-accent);
+  /* Use CSS variable if available, else theme passed prop handles it? Wait, theme prop is passed. */
+  /* Using inherit or currentcolor might not work for background. */
+  /* The layout component uses inline style for background color which I removed. */
+  /* Ah, I removed the background logic from ModernLayout! Key issue! */
+  /* I must restore the dynamic background color in the component or use a CSS var. */
+  /* I'll use the CSS var '--cv-accent' which is set in CVPreview.jsx */
+  background: var(--cv-accent);
+  color: white;
+  margin: calc(-1 * var(--page-padding)) calc(-1 * var(--page-padding)) 2rem calc(-1 * var(--page-padding));
+  padding: 3rem var(--page-padding) 2rem var(--page-padding);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.modern-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+/* Bold Layout */
+.bold-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+@media (max-width: 850px) {
+  .modern-banner {
+    padding: 2rem var(--page-padding) 3rem var(--page-padding);
+    clip-path: none;
+    margin-bottom: 1rem;
+  }
+
+  .modern-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .bold-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 /* Print Styles */
