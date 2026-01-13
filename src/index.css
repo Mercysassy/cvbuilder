@@ -419,3 +419,246 @@ button {
     margin: 0;
   }
 }
+
+/* Sidebar Styles */
+.ui-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  background-color: white;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.ui-sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+}
+
+.close-btn:hover {
+  color: var(--text-color);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.ui-sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s;
+}
+
+.ui-sidebar-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Push content animation classes */
+.content-push {
+  transition: margin-right 0.3s ease-in-out;
+}
+
+@media (min-width: 1024px) {
+  .content-push.sidebar-open {
+    margin-right: 350px;
+    /* Push the content */
+  }
+
+  .ui-sidebar-overlay {
+    display: none;
+    /* No overlay on desktop */
+  }
+}
+
+@media (max-width: 480px) {
+  .ui-sidebar {
+    width: 100%;
+  }
+}
+
+/* Sidebar Theme Editor Styles */
+.theme-editor-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sidebar-section-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.layout-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.layout-option:hover {
+  border-color: #9ca3af;
+}
+
+.layout-option.active {
+  border-color: var(--primary-color);
+  background-color: #eff6ff;
+  color: var(--primary-color);
+}
+
+.layout-option span {
+  font-size: 0.85rem;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.preview-box {
+  width: 100%;
+  height: 60px;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Simple visual representations for templates */
+.preview-minimalist {
+  border-top: 4px solid #333;
+}
+
+.preview-professional {
+  border-left: 10px solid #cbd5e1;
+}
+
+.preview-modern {
+  background: linear-gradient(135deg, #e0e7ff 0%, #e0e7ff 40%, white 40%);
+}
+
+.preview-bold {
+  border: 2px solid #333;
+}
+
+.preview-creative {
+  border-radius: 12px;
+  border: 2px dashed #9ca3af;
+}
+
+
+.color-group {
+  margin-bottom: 1.5rem;
+}
+
+.color-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.color-options,
+.bg-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.color-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+}
+
+.color-circle.active {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.color-picker-input {
+  width: 34px;
+  height: 34px;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.bg-option {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.bg-option.active {
+  border-color: var(--primary-color);
+  background-color: #eff6ff;
+  color: var(--primary-color);
+}

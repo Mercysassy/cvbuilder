@@ -4,6 +4,7 @@ import CVForm from './components/CVForm';
 import CVPreview from './components/CVPreview';
 import { initialCVData } from './data/initialState';
 import ThemeEditor from './components/ThemeEditor';
+import Sidebar from './components/Sidebar';
 import './index.css';
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
         accentColor: '#000000',
         backgroundColor: '#ffffff'
     });
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
     const componentRef = useRef();
 
     const handlePrint = useReactToPrint({
@@ -148,17 +151,26 @@ function App() {
     };
 
     return (
-        <div className="app-container">
+        /* Apply content-push class to wrapper */
+        <div className={`app-container content-push ${isSidebarOpen ? 'sidebar-open' : ''}`}>
             <header className="header">
                 <h1>CV Builder</h1>
-                <button className="btn-primary" onClick={handlePrint}>
-                    Download PDF
-                </button>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+                    <button
+                        className="btn-primary"
+                        onClick={() => setIsSidebarOpen(true)}
+                        style={{ backgroundColor: '#4b5563' }}
+                    >
+                        Customize Design
+                    </button>
+                    <button className="btn-primary" onClick={handlePrint}>
+                        Download PDF
+                    </button>
+                </div>
             </header>
 
             <main className="main-content">
                 <div className="left-column">
-                    <ThemeEditor theme={theme} setTheme={setTheme} />
                     <CVForm
                         cvData={cvData}
                         onChange={handleChange}
@@ -174,6 +186,10 @@ function App() {
                     theme={theme}
                 />
             </main>
+
+            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)}>
+                <ThemeEditor theme={theme} setTheme={setTheme} />
+            </Sidebar>
         </div>
     );
 }
