@@ -24,7 +24,7 @@ function App() {
         pageStyle: `
             @page {
                 size: auto;
-                margin: 0.5in;
+                margin: 0mm;
             }
         `
     });

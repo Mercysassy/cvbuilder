@@ -38,8 +38,8 @@ const BoldLayout = ({ cvData, theme }) => {
 
             <div className="bold-grid">
                 <div>
-                    <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase' }}>
-                        Experience
+                    <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1.5rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase', transform: 'skewX(-15deg)', marginLeft: '1rem' }}>
+                        <span style={{ display: 'inline-block', transform: 'skewX(15deg)' }}>Experience</span>
                     </div>
                     <div style={borderStyle}>
                         {cvData.experience.map(exp => (
@@ -55,8 +55,8 @@ const BoldLayout = ({ cvData, theme }) => {
 
                 <div>
                     <div style={{ marginBottom: '3rem' }}>
-                        <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase' }}>
-                            Education
+                        <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1.5rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase', transform: 'skewX(-15deg)', marginLeft: '1rem' }}>
+                            <span style={{ display: 'inline-block', transform: 'skewX(15deg)' }}>Education</span>
                         </div>
                         <div style={borderStyle}>
                             {cvData.education.map(edu => (
@@ -75,8 +75,8 @@ const BoldLayout = ({ cvData, theme }) => {
 
             {cvData.certifications && cvData.certifications.length > 0 && (
                 <div style={{ marginBottom: '3rem' }}>
-                    <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase' }}>
-                        Certifications
+                    <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1.5rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase', transform: 'skewX(-15deg)', marginLeft: '1rem' }}>
+                        <span style={{ display: 'inline-block', transform: 'skewX(15deg)' }}>Certifications</span>
                     </div>
                     <div style={borderStyle}>
                         {cvData.certifications.map(cert => (
@@ -92,8 +92,8 @@ const BoldLayout = ({ cvData, theme }) => {
 
             {cvData.volunteer && cvData.volunteer.length > 0 && (
                 <div style={{ marginBottom: '3rem' }}>
-                    <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase' }}>
-                        Volunteering
+                    <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1.5rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase', transform: 'skewX(-15deg)', marginLeft: '1rem' }}>
+                        <span style={{ display: 'inline-block', transform: 'skewX(15deg)' }}>Volunteering</span>
                     </div>
                     <div style={borderStyle}>
                         {cvData.volunteer.map(vol => (
@@ -108,8 +108,8 @@ const BoldLayout = ({ cvData, theme }) => {
             )}
 
             <div>
-                <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase' }}>
-                    Skills
+                <div style={{ marginBottom: '1rem', background: theme.accentColor, color: 'white', padding: '0.5rem 1.5rem', display: 'inline-block', fontWeight: 700, textTransform: 'uppercase', transform: 'skewX(-15deg)', marginLeft: '1rem' }}>
+                    <span style={{ display: 'inline-block', transform: 'skewX(15deg)' }}>Skills</span>
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
                     {cvData.skills.split(',').map((skill, i) => (
